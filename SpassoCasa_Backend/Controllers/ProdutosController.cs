@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpassoCasa_Backend.Context;
@@ -19,6 +20,7 @@ namespace SpassoCasa_Backend.Controllers
 
         [HttpPost]
 
+        //[Authorize]
         public IActionResult AdicionarProduto(Produtos body)
         {
             _context.Produtos.Add(body);
@@ -50,7 +52,7 @@ namespace SpassoCasa_Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-
+        //[Authorize]
         public IActionResult Delete(int id)
         {
             var pegarProduto = _context.Produtos.FirstOrDefault((e)=> e.ProdutoId == id);
@@ -64,7 +66,7 @@ namespace SpassoCasa_Backend.Controllers
         }
 
         [HttpPut("{id:int}")]
-
+        //[Authorize]
         public ActionResult Put(int id, Produtos produtos)
         {
             if (id != produtos.ProdutoId) return BadRequest();
